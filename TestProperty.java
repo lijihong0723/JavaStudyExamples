@@ -4,10 +4,24 @@ import java.util.Properties;
 import java.util.Enumeration;
 
 public class TestProperty {
+
+	public static void printProperties(Properties p) {
+		System.out.println("----- start -----");
+		Enumeration<?> enumeration = p.propertyNames();
+		while (enumeration.hasMoreElements()) {
+			String name = (String) enumeration.nextElement();
+			System.out.println(name + "=");
+			System.out.println(p.getProperty(name));
+		}
+		System.out.println("----- end -----");
+	}
+
 	public static void main(String[] args) throws Exception {
 		System.out.println("This program is");
 		System.setProperty("user.dir", "D:/tomcat");
 		System.out.println(System.getProperty("user.dir"));
+
+		printProperties(System.getProperties());	
 
 		File f = new File("E:/Study/java_console/test.properties");
 		if (f.exists()) {
